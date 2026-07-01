@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Loop"
+  short_description: "Subagent git-diff review loop"
+  default_prompt: "Use $review-loop after finishing implementation to run a sandboxed subagent review loop over the user request and git diff."
