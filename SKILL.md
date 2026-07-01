@@ -1,6 +1,6 @@
 ---
 name: review-loop
-description: Run an automatic post-work review loop with a forked sandbox subagent. Use when Codex is asked to use review-loop, autoreview, subagent review after implementation, or to review the user's request plus current git diff and then have the main agent apply actionable fixes. Supports configurable maximum review rounds, defaulting to one, and optional project review standards from .agent/review-guidelines.md.
+description: Run an automatic post-work review loop with a forked sandbox subagent. Use when Codex is asked to use review-loop, autoreview, subagent review after implementation, or to review the user's request plus current git diff and then have the main agent apply actionable fixes. Supports configurable maximum review rounds, defaulting to one, and optional project review standards from .agents/review-guidelines.md.
 ---
 
 # Review Loop
@@ -20,10 +20,10 @@ Load optional extra standards from the project root:
 
 ```bash
 project_root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
-test -f "$project_root/.agent/review-guidelines.md" && cat "$project_root/.agent/review-guidelines.md"
+test -f "$project_root/.agents/review-guidelines.md" && cat "$project_root/.agents/review-guidelines.md"
 ```
 
-If `.agent/review-guidelines.md` is missing, continue without extra standards. Do not look for this file outside the current project root unless the user explicitly gives another path.
+If `.agents/review-guidelines.md` is missing, continue without extra standards. Do not look for this file outside the current project root unless the user explicitly gives another path.
 
 ## Review Boundary
 
@@ -61,7 +61,7 @@ Give the reviewer a self-contained prompt containing:
 
 - The user's latest requested work and any relevant constraints.
 - The current `max_rounds` and review round number.
-- The optional `.agent/review-guidelines.md` content, if present.
+- The optional `.agents/review-guidelines.md` content, if present.
 - The full review boundary: status, staged diff, unstaged diff, and relevant untracked file snippets.
 - A read-only instruction: inspect only, do not edit files, do not run destructive commands.
 
